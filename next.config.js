@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  domains: ["cdn.imagin.studio"],
+};
 
 module.exports = nextConfig

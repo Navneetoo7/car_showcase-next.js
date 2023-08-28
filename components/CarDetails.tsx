@@ -88,8 +88,8 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       </div>
                       <div
                         className="flex-1 relative w-full h-24
-                                           bg-primary-blue-100
-                                           rounded-lg"
+                         bg-primary-blue-100
+                           rounded-lg"
                       >
                         <Image
                           src="/hero.png"
@@ -124,9 +124,11 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       <div
                         className="flex justify-between gap-5 w-full text-right"
                         key={key}
-                        >
-                            <h4 className="text-grey capitalize">{key.split("_").join(" ")}</h4>
-                            <p className="text-black-100 font-semibold">{value}</p>
+                      >
+                        <h4 className="text-grey capitalize">
+                          {key.split("_").join(" ")}
+                        </h4>
+                        <p className="text-black-100 font-semibold">{value}</p>
                       </div>
                     ))}
                   </div>
