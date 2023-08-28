@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Dialog, Transition } from "@headlessui/react";
 
 interface CarDetailsProps {
-  isOpen: Boolean;
+  isOpen: boolean;
   closeModal: () => void;
   car: CarProps;
 }
