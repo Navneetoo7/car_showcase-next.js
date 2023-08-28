@@ -1,20 +1,26 @@
 "use client";
-import React, { Fragment, useState } from 'react'
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { Listbox, Transition } from '@headlessui/react';
-import { CustomFilterProps } from '@/type';
+import React, { Fragment, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Listbox, Transition } from "@headlessui/react";
+import { CustomFilterProps } from "@/type";
+import { updateSearchParmas } from "@/utils";
+
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
   const [selected, setSelected] = useState(options[0]);
-
+  const handleUpdateParmas = (e: { title: string; value: string }) => {
+    const newPathName = updateSearchParmas(title, e.value.toLowerCase());
+  router.push(newPathName);
+  }
   return (
     <div className="relative w-fit z-10">
       <Listbox
         value={selected}
         onChange={(e) => {
           setSelected(e);
+          handleUpdateParmas(e);
         }}
       >
         <div className="relative w-fit z-10">
@@ -28,10 +34,29 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
               alt="chevron_up-down"
             />
           </Listbox.Button>
+          <Transition
+            as={Fragment}
+            leave="transition ease-in duration-100"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Listbox.Options className="custom-filter__options">
+              {options.map((option) => (
+                <Listbox.Option
+                  key={option.title}
+                  value={option}
+                  className={({active})=>`relative cursor-default select-none py-2 px-4 ${active?'bg-primary-blue text-white':'text-gray-900'}`}
+                >
+                  {({ selected }) => <span className={`block truncate ${selected?'font-medium':'font-normal'}`}>{option.title}</span>}
+                </Listbox.Option>
+              ))}
+            </Listbox.Options>
+          </Transition>
         </div>
       </Listbox>
     </div>
   );
 };
 
-export default CustomFilter
+export default CustomFilter;
+

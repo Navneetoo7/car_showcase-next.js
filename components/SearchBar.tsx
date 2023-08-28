@@ -37,8 +37,8 @@ const SearchBar = () => {
       searchParams.delete('manufacturer',manufacturer)
     }
 
-    const newPathnane = `${window.location.pathname}?${searchParams.toString()}`
-    router.push(newPathnane)
+    const newPathname = `${window.location.pathname}?${searchParams.toString()}`
+    router.push(newPathname)
   }
 
   return (
